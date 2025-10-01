@@ -5,30 +5,34 @@ import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
 
-const EmailSection = () => {
+const Project = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
-  const [email, setEmail] = useState("")
-  const [subject, setSubject] = useState("")
-  const [message, setMessage] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        subject,
-        message 
-      }),
+    const data = {
+      email: e.target.email.value,
+      subject: e.target.subject.value,
+      message: e.target.message.value,
     };
-        
-    const response = await fetch(`/api/admin/message/`, requestOptions)
-    alert("Mensaje enviado.");
-    setEmail("");
-    setSubject("");
-    setMessage("");
+    const JSONdata = JSON.stringify(data);
+    const endpoint = "/api/send";
+
+    // Form the request for sending data to the server.
+    const options = {
+      // The method is POST because we are sending data.
+      method: "POST",
+      // Tell the server we're sending JSON.
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // Body of the request is the JSON data we created above.
+      body: JSONdata,
+    };
+
+    const response = await fetch(endpoint, options);
+    const resData = await response.json();
+
     if (response.status === 200) {
       console.log("Message sent.");
       setEmailSubmitted(true);
@@ -81,8 +85,6 @@ const EmailSection = () => {
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="jacob@google.com"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
               />
             </div>
             <div className="mb-6">
@@ -99,8 +101,6 @@ const EmailSection = () => {
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Just saying hi"
-                onChange={(e) => setSubject(e.target.value)}
-                value={subject}
               />
             </div>
             <div className="mb-6">
@@ -115,8 +115,6 @@ const EmailSection = () => {
                 id="message"
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Let's talk about..."
-                onChange={(e) => setMessage(e.target.value)}
-                value={message}
               />
             </div>
             <button
@@ -132,4 +130,4 @@ const EmailSection = () => {
   );
 };
 
-export default EmailSection;
+export default Project;
