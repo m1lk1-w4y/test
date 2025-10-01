@@ -1,4 +1,5 @@
 import mongoose, { Schema, model, Model } from 'mongoose';
+// import { IMessage } from '../interfaces';
 
 const messageSchema = new Schema({
     email: { type: String },
@@ -9,6 +10,8 @@ const messageSchema = new Schema({
 });
 
 messageSchema.index({ title: 'text' });
+
+// const Message = model<IMessage>('Message', messageSchema);
 
 const Message = mongoose.model('Message', messageSchema);
 

@@ -13,13 +13,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
  db.connect();
  const user = await User.findOne({ email });
 
- // if (!user) {
- //  return NextResponse.json({ message: `Usuario no encontrado.` }, { status: 400 });
- // }
+ if (!user) {
+  return NextResponse.json({ message: `Usuario no encontrado.` }, { status: 400 });
+ }
 
- // if (!bcrypt.compareSync(password, user.password!)) {
- //  return NextResponse.json({ message: `Contraseña incorrecta.` }, { status: 400 });
- // }
+ if (!bcrypt.compareSync(password, user.password!)) {
+  return NextResponse.json({ message: `Contraseña incorrecta.` }, { status: 400 });
+ }
 
  const { role, id } = user;
 

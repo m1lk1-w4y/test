@@ -1,4 +1,5 @@
 import mongoose, { Schema, model, Model } from 'mongoose';
+// import { IAbout } from '../interfaces';
 
 const aboutSchema = new Schema({
     image: { type: String },
@@ -21,6 +22,8 @@ const aboutSchema = new Schema({
 });
 
 aboutSchema.index({ title: 'text' });
+
+// const About = model<IAbout>('About', aboutSchema);
 
 const About = mongoose.model('About', aboutSchema);
 

@@ -1,4 +1,5 @@
 import mongoose, { Schema, model, Model } from 'mongoose';
+// import { IProject } from '../interfaces';
 
 const projectSchema = new Schema({
     image: { type: String },
@@ -13,6 +14,8 @@ const projectSchema = new Schema({
 });
 
 projectSchema.index({ title: 'text' });
+
+// const Projects = model<IProject>('projects', projectSchema);
 
 const Project = mongoose.model('Project', projectSchema);
 

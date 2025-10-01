@@ -1,4 +1,5 @@
 import mongoose, { Schema, model, Model } from 'mongoose';
+// import { IHero } from '../interfaces';
 
 const heroSchema = new Schema({
     image: { type: String },
@@ -12,6 +13,8 @@ const heroSchema = new Schema({
 });
 
 heroSchema.index({ title: 'text' });
+
+// const Hero = model<IHero>('Hero', heroSchema);
 
 const Hero = mongoose.model('Hero', heroSchema);
 
