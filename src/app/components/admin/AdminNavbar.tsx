@@ -1,12 +1,7 @@
 "use client"
 import * as React from 'react';
-import { AppBar, Box, Toolbar, Typography, Button, IconButton, Drawer, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
-import {
-  AccountCircleOutlined, CategoryOutlined, LoginOutlined, SearchOutlined, KeyOutlined,
-  AdminPanelSettings
-} from "@mui/icons-material";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { AppBar, Box, Toolbar, Typography, IconButton, Drawer, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
+import { CategoryOutlined, KeyOutlined } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/navigation';
 
@@ -122,7 +117,7 @@ const AdminNavbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }} className="py-8">
-      <AppBar position="static" color="transparent" position="fixed">
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <IconButton
             onClick={toggleDrawer(true)}

@@ -2,15 +2,11 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
 
-import { IProject } from "../../interfaces";
 import AdminNavbar from "../../components/admin/AdminNavbar";
 
-interface Props {
-  project: IProject;
-}
 
-const Project: FC<Props> = ({ project }) => {
-  const [uploadFile, setuploadFile] = useState<File | null>(null);
+const Project = () => {
+  const [uploadFile, setuploadFile] = useState < File | null > (null);
   const [uploadFileLoading, setuploadFileLoading] = useState(false);
   const [fileLink, setfileLink] = useState("");
   const [file, setFile] = useState("")
@@ -24,14 +20,14 @@ const Project: FC<Props> = ({ project }) => {
 
 
 
-  function handleFileChange(e: any) {
+  function handleFileChange(e) {
     const file = e.target.files?.[0];
     if (file) {
       setuploadFile(file);
     }
   }
 
-  async function onSubmit(e: any) {
+  async function onSubmit(e) {
     e.preventDefault();
     if (!uploadFile) {
       alert("File is required");

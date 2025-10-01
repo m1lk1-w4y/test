@@ -28,16 +28,16 @@ export async function POST(req: NextRequest, res: NextResponse) {
     console.log(error);
   }
 
-  const { role, _id } = newUser;
+  const { role, id } = newUser;
 
-  const token = jwt.signToken(_id, email);
+  const token = jwt.signToken(id, email);
 
 
 
   return NextResponse.json({
     token,
     user: {
-      _id,
+      id,
       name,
       email,
       image,

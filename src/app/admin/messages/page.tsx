@@ -35,10 +35,10 @@ const ProjectsSection = () => {
           <div className="bg-[#181818]  relative my-3 mx-3 py-3 px-3">
             <div className="grid grid-cols-6 sm:grid-cols-12">
               <div className="col-span-12 sm:text-left justify-self-start">
-                <h3 className="text-white py-2"><span className="font-bold">ID:</span>{` ${r._id}`}</h3>
-                <h3 className="text-white py-2"><span className="font-bold">Email:</span>{` ${r.email}`}</h3>
-                <h3 className="text-white py-2"><span className="font-bold">Subject:</span>{` ${r.subject}`}</h3>
-                <h3 className="text-white py-2"><span className="font-bold">Message:</span>{` ${r.message}`}</h3>
+                <h3 className="text-white py-2" key={r._id}><span className="font-bold">ID:</span>{` ${r._id}`}</h3>
+                <h3 className="text-white py-2" key={r._id}><span className="font-bold">Email:</span>{` ${r.email}`}</h3>
+                <h3 className="text-white py-2" key={r._id}><span className="font-bold">Subject:</span>{` ${r.subject}`}</h3>
+                <h3 className="text-white py-2" key={r._id}><span className="font-bold">Message:</span>{` ${r.message}`}</h3>
 
               </div>
 

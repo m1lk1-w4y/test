@@ -1,16 +1,11 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import NextLink from "next/link";
-import ProjectCard from "../../components/ProjectCard";
-import ProjectTag from "../../components/ProjectTag";
-import { motion, useInView } from "framer-motion";
-import { IProject } from "../../interfaces";
 import { Api } from "../../api";
 
 // material ui
-import { AddOutlined, CategoryOutlined } from "@mui/icons-material";
 import { Box, Button, CardMedia, Grid, Typography } from "@mui/material";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 // material icon
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
@@ -25,7 +20,7 @@ const ProjectsSection = () => {
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/admin/project')
+    fetch('/api/admin/hero')
       .then((res) => res.json())
       .then((data) => {
         setData(data)
@@ -35,39 +30,38 @@ const ProjectsSection = () => {
 
   if (!data) return <></>;
 
-  const rows = data!.map((product) => ({
-    id: product._id,
-    image: product.image,
-    title: product.title,
-    github: product.github,
-    web: product.web,
-    description: product.description,
-    tag1: product.tag1,
-    tag2: product.tag2
+  const rows = data?.map((hero) => ({
+    id: hero._id,
+    image: hero.image,
+    title0: hero.title0,
+    title1: hero.title1,
+    title2: hero.title2,
+    description: hero.description,
+
   }));
 
-  const onDelete = async (id: string) => {
-    await Api.delete(`admin/project/${id}`);
-    alert("proyecto eliminado.");
+  const onDelete = async (id) => {
+    await Api.delete(`admin/hero/${id}`);
+    alert("Hero eliminado.");
     window.location.reload();
   };
 
 
-  const columns: GridColDef[] = [
+  const columns = [
     {
       field: "id",
       headerName: "ID",
       width: 75,
-      renderCell: ({ row }: GridValueGetterParams) => {
+      renderCell: ({ row }) => {
         return <Typography>{`${row.id.substring(0, 7)}...`}</Typography>;
       },
     },
     {
       field: "image",
       headerName: "Image",
-      renderCell: ({ row }: GridValueGetterParams) => {
+      renderCell: ({ row }) => {
         return (
-          <a href={`/admin/project/${row.id}`} target="_blank" rel="noreferrer">
+          <a href={`/admin/hero/${row.id}`} target="_blank" rel="noreferrer">
             <CardMedia
               component="img"
               alt={row.title}
@@ -79,54 +73,45 @@ const ProjectsSection = () => {
         );
       },
     },
-
-    //   {
-    //   field: "image",
-    //   headerName: "Image",
-    //   width: 250,
-    //   renderCell: ({ row }: GridValueGetterParams) => {
-    //     return <Typography>{row.image}</Typography>;
-    //   },
-    // },
     {
-      field: "title",
-      headerName: "Title",
-      width: 250,
-      renderCell: ({ row }: GridValueGetterParams) => {
-        return <Typography>{row.title}</Typography>;
+      field: "title0",
+      headerName: "Title 1",
+      width: 150,
+      renderCell: ({ row }) => {
+        return <Typography>{row.title0}</Typography>;
+      },
+    },
+    {
+      field: "title1",
+      headerName: "Title 2",
+      width: 150,
+      renderCell: ({ row }) => {
+        return <Typography>{row.title1}</Typography>;
+      },
+    },
+    {
+      field: "title2",
+      headerName: "Title 3",
+      width: 150,
+      renderCell: ({ row }) => {
+        return <Typography>{row.title2}</Typography>;
       },
     },
     {
       field: "description",
       headerName: "Description",
-      width: 250,
-      renderCell: ({ row }: GridValueGetterParams) => {
+      width: 150,
+      renderCell: ({ row }) => {
         return <Typography>{row.description}</Typography>;
-      },
-    },
-    {
-      field: "tag1",
-      headerName: "Tag 1",
-      width: 75,
-      renderCell: ({ row }: GridValueGetterParams) => {
-        return <Typography>{row.tag1}</Typography>;
-      },
-    },
-    {
-      field: "tag2",
-      headerName: "Tag 2",
-      width: 75,
-      renderCell: ({ row }: GridValueGetterParams) => {
-        return <Typography>{row.tag2}</Typography>;
       },
     },
     {
       field: "editar",
       headerName: "Editar",
       width: 100,
-      renderCell: ({ row }: GridValueGetterParams) => {
+      renderCell: ({ row }) => {
         return (
-          <NextLink href={`project/${row.id}`}>
+          <NextLink href={`hero/${row.id}`}>
             <Button color="warning">
               <ModeEditOutlineOutlinedIcon />
             </Button>
@@ -138,7 +123,7 @@ const ProjectsSection = () => {
       field: "eliminar",
       headerName: "Eliminar",
       width: 100,
-      renderCell: ({ row }: GridValueGetterParams) => {
+      renderCell: ({ row }) => {
         return (
           <Button onClick={() => onDelete(row.id)} color="error">
             <DeleteOutlineOutlinedIcon />

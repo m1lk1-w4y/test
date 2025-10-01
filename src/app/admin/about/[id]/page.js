@@ -7,71 +7,74 @@ import { IAbout } from "../../../interfaces";
 import AdminNavbar from "../../../components/admin/AdminNavbar";
 
 
-
-interface FormData {
-  _id?: string;
-  image: string;
-  title: string;
-  description: string;
-  skill0: string;
-  skill1: string;
-  skill2: string;
-  skill3: string;
-  skill4: string;
-  skill5: string;
-  education0: string;
-  education1: string;
-  education2: string;
-  certification0: string;
-  certification1: string;
-  certification2: string;
-}
-
-interface Props {
-  about: IAbout;
-}
-
-const About: FC<Props> = ({ about }) => {
+const About = () => {
   const [data, setData] = useState(null)
+  const [title, setTitle] = useState("");
+  const [skill0, setSkill0] = useState("");
+  const [skill1, setSkill1] = useState("");
+  const [skill2, setSkill2] = useState("");
+  const [skill3, setSkill3] = useState("");
+  const [skill4, setSkill4] = useState("");
+  const [skill5, setSkill5] = useState("");
+  const [education0, setEducation0] = useState("");
+  const [education1, setEducation1] = useState("");
+  const [education2, setEducation2] = useState("");
+  const [certification0, setCertification0] = useState("");
+  const [certification1, setCertification1] = useState("");
+  const [certification2, setCertification2] = useState("");
+  const [description, setDescription] = useState("");
 
   const params = useParams();
   const { id } = params;
 
-  const onSubmit = async (form: FormData) => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     try {
 
+      // const requestOptions = {
+      //   method: 'PUT',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(form),
+      // };
+
+      // const response = await fetch(`/api/admin/about/${id}`, requestOptions)
+      // console.log(`data... ${data}`)
+      // const result = await response.json();
+      // console.log('Resource updated:', result);
+      // alert("Acerca de se actualizo correctamente.")
+      // reset();
+
+      // // window.location.reload();
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          image,
+          title,
+          skill0,
+          skill1,
+          skill2,
+          skill3,
+          skill4,
+          skill5,
+          education0,
+          education1,
+          education2,
+          certification0,
+          certification1,
+          certification2,
+          description
+        }),
       };
 
-      const response = await fetch(`/api/admin/about/${id}`, requestOptions)
-      console.log(`data... ${data}`)
-      const result = await response.json();
-      console.log('Resource updated:', result);
-      alert("Acerca de se actualizo correctamente.")
-      reset();
-
-      // window.location.reload();
+      await fetch(`/api/admin/about/${id}`, requestOptions)
+      alert("Acerca de se actualizo correctamente.");
     } catch (error) {
       console.log(error);
       // setIsSaving(false);
       console.log(data)
     }
   }
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-    setValue,
-    watch,
-    reset,
-  } = useForm<FormData>({
-    defaultValues: about,
-  });
 
 
 
@@ -98,12 +101,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("image", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setImage(e.target.value)}
+                value={image}
               />
             </div>
             <div className="mb-6">
@@ -117,12 +116,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("title", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
               />
             </div>
             <div className="mb-6">
@@ -136,12 +131,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("skill0", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setSkill0(e.target.value)}
+                value={skill0}
               />
             </div>
             <div className="mb-6">
@@ -154,13 +145,8 @@ const About: FC<Props> = ({ about }) => {
                 name="skill1"
                 type="text"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("skill1", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setSkill1(e.target.value)}
+                value={skill1}
               />
             </div>
             <div className="mb-6">
@@ -174,12 +160,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("skill2", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setSkill2(e.target.value)}
+                value={skill2}
               />
             </div>
             <div className="mb-6">
@@ -193,12 +175,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("skill3", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setSkill3(e.target.value)}
+                value={skill3}
               />
             </div>
             <div className="mb-6">
@@ -212,12 +190,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("skill4", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setSkill4(e.target.value)}
+                value={skill4}
               />
             </div>
             <div className="mb-6">
@@ -230,13 +204,8 @@ const About: FC<Props> = ({ about }) => {
                 name="skill5"
                 type="text"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("skill5", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setSkill5(e.target.value)}
+                value={skill5}
               />
             </div>
             <div className="mb-6">
@@ -250,12 +219,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("education0", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setEducation0(e.target.value)}
+                value={education0}
               />
             </div>
             <div className="mb-6">
@@ -269,12 +234,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("education1", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setEducation1(e.target.value)}
+                value={education1}
               />
             </div>
             <div className="mb-6">
@@ -288,12 +249,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("education2", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setEducation2(e.target.value)}
+                value={education2}
               />
             </div>
             <div className="mb-6">
@@ -307,12 +264,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("certification0", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setCertification0(e.target.value)}
+                value={certification0}
               />
             </div>
             <div className="mb-6">
@@ -326,12 +279,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("certification1", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setCertification1(e.target.value)}
+                value={certification1}
               />
             </div>
             <div className="mb-6">
@@ -345,12 +294,8 @@ const About: FC<Props> = ({ about }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("certification2", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setCertification2(e.target.value)}
+                value={certification2}
               />
             </div>
             <div className="mb-6">
@@ -363,12 +308,8 @@ const About: FC<Props> = ({ about }) => {
               <textarea
                 name="description"
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("description", {
-                  required: "Este campo es requerido",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-              // error={!!errors.title}
-              // helperText={errors.title?.message}
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
               />
             </div>
 

@@ -34,14 +34,14 @@ const AboutSection = () => {
         <ul className="list-disc pl-2">
           {result?.map(i => (
             <>
-              <li>{i.skill0}</li>
-              <li>{i.skill1}</li>
-              <li>{i.skill2}</li>
-              <li>{i.skill3}</li>
-              <li>{i.skill4}</li>
-              <li>{i.skill5}</li>
+              <li key={i._id}>{i.skill0}</li>
+              <li key={i._id}>{i.skill1}</li>
+              <li key={i._id}>{i.skill2}</li>
+              <li key={i._id}>{i.skill3}</li>
+              <li key={i._id}>{i.skill4}</li>
+              <li key={i._id}>{i.skill5}</li>
             </>
-            
+
           ))}
         </ul>
       ),
@@ -53,11 +53,11 @@ const AboutSection = () => {
         <ul className="list-disc pl-2">
           {result?.map(i => (
             <>
-              <li>{i.education0}</li>
-              <li>{i.education1}</li>
-              <li>{i.education2}</li>
+              <li key={i._id}>{i.education0}</li>
+              <li key={i._id}>{i.education1}</li>
+              <li key={i._id}>{i.education2}</li>
             </>
-            
+
           ))}
         </ul>
       ),
@@ -68,15 +68,15 @@ const AboutSection = () => {
       content: (
         <ul className="list-disc pl-2">
           <ul className="list-disc pl-2">
-          {result?.map(i => (
-            <>
-              <li>{i.certification0}</li>
-              <li>{i.certification1}</li>
-              <li>{i.certification2}</li>
-            </>
-            
-          ))}
-        </ul>
+            {result?.map(i => (
+              <>
+                <li key={i._id}>{i.certification0}</li>
+                <li key={i._id}>{i.certification1}</li>
+                <li key={i._id}>{i.certification2}</li>
+              </>
+
+            ))}
+          </ul>
         </ul>
       ),
     },
@@ -88,50 +88,51 @@ const AboutSection = () => {
         <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
           {/* <Image src={`${about.image}`} width={500} height={500} /> */}
           <CardMedia
+            key={about._id}
             component="img"
             height="500"
             image={about.image}
             alt="Paella dish"
           />
           <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-            
+
             <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-              <h2 className="text-4xl font-bold text-white mb-4">{about.title}</h2>
+              <h2 className="text-4xl font-bold text-white mb-4" key={about._id}>{about.title}</h2>
               <p className="text-base lg:text-lg">
                 {about.description}
               </p>
               <div className="flex flex-row justify-start mt-8">
-            <TabButton
-              selectTab={() => handleTabChange("skills")}
-              active={tab === "skills"}
-            >
-              {" "}
-              Skills{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("education")}
-              active={tab === "education"}
-            >
-              {" "}
-              Education{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("certifications")}
-              active={tab === "certifications"}
-            >
-              {" "}
-              Certifications{" "}
-            </TabButton>
-          </div>
-          <div className="mt-8">
-            {TAB_DATA.find((t) => t.id === tab).content}
-          </div>
-              
+                <TabButton
+                  selectTab={() => handleTabChange("skills")}
+                  active={tab === "skills"}
+                >
+                  {" "}
+                  Skills{" "}
+                </TabButton>
+                <TabButton
+                  selectTab={() => handleTabChange("education")}
+                  active={tab === "education"}
+                >
+                  {" "}
+                  Education{" "}
+                </TabButton>
+                <TabButton
+                  selectTab={() => handleTabChange("certifications")}
+                  active={tab === "certifications"}
+                >
+                  {" "}
+                  Certifications{" "}
+                </TabButton>
+              </div>
+              <div className="mt-8">
+                {TAB_DATA.find((t) => t.id === tab).content}
+              </div>
+
             </div>
           </div>
         </div>
       ))}
-      
+
     </section>
   );
 };

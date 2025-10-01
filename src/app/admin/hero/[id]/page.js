@@ -6,50 +6,49 @@ import { useForm } from "react-hook-form"
 import { IHero } from "../../../interfaces";
 import AdminNavbar from "../../../components/admin/AdminNavbar";
 
-interface FormData {
- _id?: string;
- image: string;
- title0: string;
- title1: string;
- title2: string;
- description: string;
-}
-
-interface Props {
- hero: IHero;
-}
-
-const Hero: FC<Props> = ({ hero }) => {
+const Hero = () => {
+ const [image, setImage] = useState("");
+ const [title0, setTitle0] = useState("");
+ const [title1, setTitle1] = useState("");
+ const [title2, setTitle2] = useState("");
+ const [description, setDescription] = useState("");
 
  const params = useParams();
  const { id } = params;
 
- const onSubmit = async (form: FormData) => {
+ const onSubmit = async (e) => {
+  e.preventDefault();
+
   try {
+   //  const requestOptions = {
+   //   method: 'PUT',
+   //   headers: { 'Content-Type': 'application/json' },
+   //   body: JSON.stringify(form),
+   //  };
+
+   //  await fetch(`/api/admin/hero/${id}`, requestOptions)
+   //  alert("Hero actulizado.")
+   //  reset();
+
+   // window.location.reload();
    const requestOptions = {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(form),
+    body: JSON.stringify({
+     image,
+     title0,
+     title1,
+     title2,
+     description
+    }),
    };
 
    await fetch(`/api/admin/hero/${id}`, requestOptions)
-   alert("Hero actulizado.")
-   reset();
-
-   // window.location.reload();
+   alert("Hero se actualizo correctamente.");
   } catch (error) {
    console.log(error);
   }
  }
-
- const {
-  register,
-  handleSubmit,
-  formState: { errors },
-  reset,
- } = useForm<FormData>({
-  defaultValues: hero,
- });
 
  return (
   <>
@@ -74,10 +73,8 @@ const Hero: FC<Props> = ({ hero }) => {
         type="text"
         required
         className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-        {...register("image", {
-        })}
-       // error={!!errors.image}
-       // helperText={errors.image?.message}
+        onChange={(e) => setImage(e.target.value)}
+        value={image}
        />
       </div>
       <div className="mb-6">
@@ -92,10 +89,8 @@ const Hero: FC<Props> = ({ hero }) => {
         type="text"
         required
         className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-        {...register("title0", {
-        })}
-       // error={!!errors.title}
-       // helperText={errors.title?.message}
+        onChange={(e) => setTitle0(e.target.value)}
+        value={title0}
        />
       </div>
       <div className="mb-6">
@@ -110,10 +105,8 @@ const Hero: FC<Props> = ({ hero }) => {
         type="text"
         required
         className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-        {...register("title1", {
-        })}
-       // error={!!errors.title}
-       // helperText={errors.title?.message}
+        onChange={(e) => setTitle1(e.target.value)}
+        value={title1}
        />
       </div>
       <div className="mb-6">
@@ -128,10 +121,8 @@ const Hero: FC<Props> = ({ hero }) => {
         type="text"
         required
         className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-        {...register("title2", {
-        })}
-       // error={!!errors.title}
-       // helperText={errors.title?.message}
+        onChange={(e) => setTitle2(e.target.value)}
+        value={title2}
        />
       </div>
       <div className="mb-6">
@@ -144,10 +135,8 @@ const Hero: FC<Props> = ({ hero }) => {
        <textarea
         name="description"
         className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-        {...register("description", {
-        })}
-       // error={!!errors.title}
-       // helperText={errors.title?.message}
+        onChange={(e) => setDescription(e.target.value)}
+        value={description}
        />
       </div>
       <button

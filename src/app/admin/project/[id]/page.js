@@ -1,81 +1,69 @@
 "use client";
 import React, { useState, useEffect, FC } from "react";
 import { useParams } from 'next/navigation';
-import { useForm } from "react-hook-form"
-import { Api } from "../../../api";
 
-import { IProject } from "../../../interfaces";
 // import { useRouter } from "next/router";
-import toast, { Toaster } from 'react-hot-toast';
 import AdminNavbar from "../../../components/admin/AdminNavbar";
 
-interface FormData {
-  _id?: string;
-  image: string;
-  title: string;
-  github: string;
-  web: string;
-  description: string;
-  tag1: string;
-  tag2: string;
-}
 
-interface Props {
-  project: IProject;
-}
 
-const Project: FC<Props> = ({ project }) => {
+const Project = () => {
   // const router = useRouter();
 
   const [data, setData] = useState(null)
-  const [isLoading, setLoading] = useState(true)
+  const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [github, setGithub] = useState("");
+  const [web, setWeb] = useState("");
+  const [tag1, setTag1] = useState("");
+  const [tag2, setTag2] = useState("");
+  const [description, setDescription] = useState("");
+
 
   const params = useParams();
   const { id } = params;
 
-  const onSubmit = async (form: FormData) => {
-    // setIsSaving(true);
-
-    let post = null;
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
     try {
 
+      // const requestOptions = {
+      //   method: 'PUT',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(form),
+      // };
+
+      // const response = await fetch(`/api/admin/project/${id}`, requestOptions)
+      // console.log(`data... ${data}`)
+      // const result = await response.json();
+      // console.log('Resource updated:', result);
+      // toast.success("Proyecto Actualizado")
+      // reset();
+
+      // window.location.reload();
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          image,
+          title,
+          github,
+          web,
+          tag1,
+          tag2,
+          description
+        }),
       };
 
-      const response = await fetch(`/api/admin/project/${id}`, requestOptions)
-      console.log(`data... ${data}`)
-      const result = await response.json();
-      console.log('Resource updated:', result);
-      toast.success("Proyecto Actualizado")
-      reset();
-
-      // window.location.reload();
+      await fetch(`/api/admin/project/${id}`, requestOptions)
+      alert("Proyecto se actualizo correctamente.");
     } catch (error) {
       console.log(error);
       // setIsSaving(false);
       console.log(data)
     }
   }
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-    setValue,
-    watch,
-    reset,
-  } = useForm<FormData>({
-    defaultValues: project,
-  });
-
-
-
-  const notify = () => toast('Here is your toast.');
 
   return (
     <>
@@ -100,10 +88,8 @@ const Project: FC<Props> = ({ project }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("image", {
-                })}
-              // error={!!errors.image}
-              // helperText={errors.image?.message}
+                onChange={(e) => setImage(e.target.value)}
+                value={image}
               />
             </div>
             <div className="mb-6">
@@ -118,10 +104,8 @@ const Project: FC<Props> = ({ project }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("title", {
-                })}
-              // error={!!errors.title}
-              // helperText={errors.title?.message}
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
               />
             </div>
             <div className="mb-6">
@@ -135,10 +119,8 @@ const Project: FC<Props> = ({ project }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("github", {
-                })}
-              // error={!!errors.title}
-              // helperText={errors.title?.message}
+                onChange={(e) => setGithub(e.target.value)}
+                value={github}
               />
             </div>
             <div className="mb-6">
@@ -151,12 +133,8 @@ const Project: FC<Props> = ({ project }) => {
                 name="web"
                 type="text"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("web", {
-
-                })}
-              // error={!!errors.title}
-              // helperText={errors.title?.message}
+                onChange={(e) => setWeb(e.target.value)}
+                value={web}
               />
             </div>
             <div className="mb-6">
@@ -169,12 +147,8 @@ const Project: FC<Props> = ({ project }) => {
                 name="tag1"
                 type="text"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("tag1", {
-
-                })}
-              // error={!!errors.title}
-              // helperText={errors.title?.message}
+                onChange={(e) => setTag1(e.target.value)}
+                value={tag1}
               />
             </div>
             <div className="mb-6">
@@ -188,11 +162,8 @@ const Project: FC<Props> = ({ project }) => {
                 type="text"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("tag2", {
-
-                })}
-              // error={!!errors.title}
-              // helperText={errors.title?.message}
+                onChange={(e) => setTag2(e.target.value)}
+                value={tag2}
               />
             </div>
 
@@ -206,10 +177,8 @@ const Project: FC<Props> = ({ project }) => {
               <textarea
                 name="description"
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                {...register("description", {
-                })}
-              // error={!!errors.title}
-              // helperText={errors.title?.message}
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
               />
             </div>
             <button
@@ -219,7 +188,7 @@ const Project: FC<Props> = ({ project }) => {
             >
               Save
             </button>
-            <Toaster />
+
           </form>
         </div>
       </section>

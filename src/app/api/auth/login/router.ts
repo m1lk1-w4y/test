@@ -21,14 +21,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
  //  return NextResponse.json({ message: `Contraseña incorrecta.` }, { status: 400 });
  // }
 
- const { role, _id } = user;
+ const { role, id } = user;
 
- const token = jwt.signToken(_id, email);
+ const token = jwt.signToken(id, email);
 
  return NextResponse.json({
   token,
   user: {
-   _id,
+   id,
    email,
    role,
   },

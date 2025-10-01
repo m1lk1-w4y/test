@@ -23,6 +23,8 @@ const userSchema = new Schema(
  },
 );
 
-const User: Model<IUser> = mongoose.models.User || model('User', userSchema);
+userSchema.index({ title: 'text' });
+
+const User = mongoose.model('User', userSchema);
 
 export default User;
