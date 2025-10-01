@@ -76,7 +76,7 @@ const Project = () => {
         <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
 
         <div>
-          <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+          <form className="flex flex-col" onSubmit={onSubmit}>
             <div className="mb-6">
               <label
                 className="text-white block mb-2 text-sm font-medium"
@@ -182,7 +182,6 @@ const Project = () => {
               />
             </div>
             <button
-              onClick={notify}
               type="submit"
               className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
             >
