@@ -4,7 +4,7 @@ import axios from "axios";
 import AdminNavbar from "../../components/admin/AdminNavbar";
 
 const Project = () => {
-    const [uploadFile, setuploadFile] = useState<File | null>(null);
+    const [uploadFile, setuploadFile] = useState(null);
     const [title0, setTitle0] = useState("")
     const [title1, setTitle1] = useState("")
     const [title2, setTitle2] = useState("")

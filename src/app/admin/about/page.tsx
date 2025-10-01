@@ -8,7 +8,7 @@ import axios from "axios";
 import AdminNavbar from "../../components/admin/AdminNavbar";
 
 const About = () => {
-  const [uploadFile, setuploadFile] = useState<File | null>(null);
+  const [uploadFile, setuploadFile] = useState(null);
   const [title, setTitle] = useState("");
   const [skill0, setSkill0] = useState("");
   const [skill1, setSkill1] = useState("");

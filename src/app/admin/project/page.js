@@ -6,7 +6,7 @@ import AdminNavbar from "../../components/admin/AdminNavbar";
 
 
 const Project = () => {
-  const [uploadFile, setuploadFile] = useState < File | null > (null);
+  const [uploadFile, setuploadFile] = useState(null);
   const [uploadFileLoading, setuploadFileLoading] = useState(false);
   const [fileLink, setfileLink] = useState("");
   const [file, setFile] = useState("")
