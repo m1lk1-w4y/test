@@ -81,9 +81,16 @@ const Project = () => {
     };
 
     const response = await fetch(`/api/admin/project/`, requestOptions)
-    const result = await response.json();
-    // toast.success(`Proyecto Actualizado `, result)
+    // const result = await response.json();
     alert("El proyecto se agrego correctamente")
+    setImage("");
+    setTitle("");
+    setGithub("");
+    setWeb("");
+    setTag1("");
+    setTag2("");
+    setDescription("");
+    window.location.replace("/admin/projects")
     return;
   }
 
@@ -111,7 +118,6 @@ const Project = () => {
                 id="file-input"
                 onChange={handleFileChange}
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-
               />
             </div>
             <div className="mb-6">

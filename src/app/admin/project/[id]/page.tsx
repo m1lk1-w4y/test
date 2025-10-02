@@ -8,7 +8,6 @@ import AdminNavbar from "../../../components/admin/AdminNavbar";
 
 
 const Project = () => {
-  // const router = useRouter();
 
   const [data, setData] = useState(null)
   const [image, setImage] = useState("");
@@ -28,20 +27,6 @@ const Project = () => {
 
     try {
 
-      // const requestOptions = {
-      //   method: 'PUT',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(form),
-      // };
-
-      // const response = await fetch(`/api/admin/project/${id}`, requestOptions)
-      // console.log(`data... ${data}`)
-      // const result = await response.json();
-      // console.log('Resource updated:', result);
-      // toast.success("Proyecto Actualizado")
-      // reset();
-
-      // window.location.reload();
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -58,9 +43,16 @@ const Project = () => {
 
       await fetch(`/api/admin/project/${id}`, requestOptions)
       alert("Proyecto se actualizo correctamente.");
+      setImage("");
+      setTitle("");
+      setGithub("");
+      setWeb("");
+      setTag1("");
+      setTag2("");
+      setDescription("");
+      window.location.replace("/admin/projects")
     } catch (error) {
       console.log(error);
-      // setIsSaving(false);
       console.log(data)
     }
   }
@@ -86,7 +78,6 @@ const Project = () => {
               <input
                 name="image"
                 type="text"
-                required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 onChange={(e) => setImage(e.target.value)}
                 value={image}

@@ -20,17 +20,6 @@ const Hero = () => {
   e.preventDefault();
 
   try {
-   //  const requestOptions = {
-   //   method: 'PUT',
-   //   headers: { 'Content-Type': 'application/json' },
-   //   body: JSON.stringify(form),
-   //  };
-
-   //  await fetch(`/api/admin/hero/${id}`, requestOptions)
-   //  alert("Hero actulizado.")
-   //  reset();
-
-   // window.location.reload();
    const requestOptions = {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -45,6 +34,12 @@ const Hero = () => {
 
    await fetch(`/api/admin/hero/${id}`, requestOptions)
    alert("Hero se actualizo correctamente.");
+   setImage("");
+   setTitle0("");
+   setTitle1("");
+   setTitle2("");
+   setDescription("");
+   window.location.replace("/admin/heros");
   } catch (error) {
    console.log(error);
   }
@@ -71,7 +66,6 @@ const Hero = () => {
        <input
         name="image"
         type="text"
-        required
         className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
         onChange={(e) => setImage(e.target.value)}
         value={image}

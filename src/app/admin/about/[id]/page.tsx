@@ -31,21 +31,6 @@ const About = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-
-      // const requestOptions = {
-      //   method: 'PUT',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(form),
-      // };
-
-      // const response = await fetch(`/api/admin/about/${id}`, requestOptions)
-      // console.log(`data... ${data}`)
-      // const result = await response.json();
-      // console.log('Resource updated:', result);
-      // alert("Acerca de se actualizo correctamente.")
-      // reset();
-
-      // // window.location.reload();
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -70,6 +55,21 @@ const About = () => {
 
       await fetch(`/api/admin/about/${id}`, requestOptions)
       alert("Acerca de se actualizo correctamente.");
+      setTitle("");
+      setSkill0("");
+      setSkill1("");
+      setSkill2("");
+      setSkill3("");
+      setSkill4("");
+      setSkill5("");
+      setEducation0("");
+      setEducation1("");
+      setEducation2("");
+      setCertification0("");
+      setCertification1("");
+      setCertification2("");
+      setDescription("");
+      window.location.replace("/admin/abouts");
     } catch (error) {
       console.log(error);
       // setIsSaving(false);
@@ -100,7 +100,6 @@ const About = () => {
               <input
                 name="title"
                 type="text"
-                required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 onChange={(e) => setImage(e.target.value)}
                 value={image}

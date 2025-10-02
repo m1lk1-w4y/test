@@ -61,9 +61,12 @@ const Project = () => {
         };
 
         const response = await fetch(`/api/admin/hero/`, requestOptions)
-        const result = await response.json();
-        // toast.success(`Proyecto Actualizado `, result)
         alert("El Hero se agrego correctamente")
+        setTitle0("");
+        setTitle1("");
+        setTitle2("");
+        setDescription("");
+        window.location.replace("/admin/heros");
         return;
     }
 

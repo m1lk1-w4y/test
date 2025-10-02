@@ -83,7 +83,21 @@ const About = () => {
 
       await fetch(`/api/admin/about/`, requestOptions)
       alert(`Se agregaron los datos correctamente.`);
-
+      setTitle("");
+      setSkill0("");
+      setSkill1("");
+      setSkill2("");
+      setSkill3("");
+      setSkill4("");
+      setSkill5("");
+      setEducation0("");
+      setEducation1("");
+      setEducation2("");
+      setCertification0("");
+      setCertification1("");
+      setCertification2("");
+      setDescription("");
+      window.location.replace("/admin/abouts");
     } catch (error) {
       console.log(error);
     }
