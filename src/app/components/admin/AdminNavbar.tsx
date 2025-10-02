@@ -117,7 +117,7 @@ const AdminNavbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }} className="py-8">
-      <AppBar position="static" color="transparent">
+      <AppBar position="fixed" color="transparent">
         <Toolbar>
           <IconButton
             onClick={toggleDrawer(true)}

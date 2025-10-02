@@ -146,6 +146,7 @@ const About = () => {
                 name="skill1"
                 type="text"
                 required
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 onChange={(e) => setSkill1(e.target.value)}
                 value={skill1}
               />
@@ -205,6 +206,7 @@ const About = () => {
                 name="skill5"
                 type="text"
                 required
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 onChange={(e) => setSkill5(e.target.value)}
                 value={skill5}
               />

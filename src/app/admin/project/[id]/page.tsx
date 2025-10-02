@@ -133,6 +133,7 @@ const Project = () => {
                 name="web"
                 type="text"
                 required
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 onChange={(e) => setWeb(e.target.value)}
                 value={web}
               />
@@ -147,6 +148,7 @@ const Project = () => {
                 name="tag1"
                 type="text"
                 required
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 onChange={(e) => setTag1(e.target.value)}
                 value={tag1}
               />
