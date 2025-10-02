@@ -4,33 +4,37 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 const Login = () => {
- const [email, setEmail] = useState("");
- const [password, setPassword] = useState("");
+ const [user, setUser] = React.useState({
+  email: "",
+  password: "",
+
+ })
 
 
  async function onSubmit(e) {
   e.preventDefault();
 
-  const requestOptions = {
-   method: 'POST',
-   headers: { 'Content-Type': 'application/json' },
-   body: JSON.stringify({
-    email,
-    password
-   }),
-  };
+  // const requestOptions = {
+  //  method: 'POST',
+  //  headers: { 'Content-Type': 'application/json' },
+  //  body: JSON.stringify({
+  //   email,
+  //   password
+  //  }),
+  // };
 
-  // await axios.post("/api/auth/login", requestOptions, {
-  //  headers: {
-  //   "Content-Type": "application/json",
-  //  },
-  // });
-  // const { token, user } = data;
-  // Cookies.set("token", token);
 
-  const response = await fetch(`/api/auth/login/`, requestOptions)
-  const result = await response.json();
-  alert(`result: ${result} `)
+  // const response = await fetch(`/api/auth/login/`, requestOptions)
+  // const result = await response.json();
+  // alert(`result: ${result} `)
+
+  try {
+
+   const response = await axios.post("/api/auth/login", user);
+   console.log("Login success", response.data);
+  } catch (error) {
+   console.log("Login failed", error.message);
+  }
 
   alert("Ingresando...")
   return;
