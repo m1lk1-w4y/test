@@ -23,6 +23,19 @@ const AdminNavbar = () => {
 
   const DrawerList = (
     <Box sx={{ width: 250, paddingTop: 5 }} role="presentation" onClick={toggleDrawer(false)}>
+      <ListSubheader sx={{ margin: 0 }}>Home</ListSubheader>
+      <Divider />
+      <List>
+        <ListItem onClick={() => navigateTo("/")}>
+          <ListItemButton>
+            <ListItemIcon>
+              <CategoryOutlined />
+            </ListItemIcon>
+            <ListItemText primary={"Home Page"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <List></List>
       <ListSubheader sx={{ margin: 0 }}>Hero</ListSubheader>
       <Divider />
       <List>
