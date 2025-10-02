@@ -4,11 +4,9 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 const Login = () => {
- const [user, setUser] = React.useState({
-  email: "",
-  password: "",
-
- })
+ const [user, setUser] = useState({ email: "", password: "", })
+ // const [email, setEmail] = useState("")
+ // const [password, setPassword] = useState("")
 
 
  async function onSubmit(e) {
@@ -59,8 +57,8 @@ const Login = () => {
        required
        className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
        placeholder="jacob@google.com"
-       onChange={(e) => setEmail(e.target.value)}
-       value={email}
+       value={user.email}
+       onChange={(e) => setUser({ ...user, email: e.target.value })}
       />
      </div>
      <div className="mb-6">
@@ -77,8 +75,8 @@ const Login = () => {
        required
        className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
        placeholder="*******"
-       onChange={(e) => setPassword(e.target.value)}
-       value={password}
+       value={user.password}
+       onChange={(e) => setUser({ ...user, password: e.target.value })}
       />
      </div>
      <button
