@@ -24,7 +24,7 @@ const AdminNavbar = () => {
 
   const logout = async () => {
     try {
-      await axios.get('/api/users/logout')
+      await axios.get('/api/auth/logout')
       alert('Logout successful')
       router.push('/auth/login')
     } catch (error: any) {
@@ -132,15 +132,6 @@ const AdminNavbar = () => {
         </ListItem>
       </List>
       <ListSubheader sx={{ margin: 0 }}>User</ListSubheader>
-      <Divider />
-      <ListItem onClick={() => navigateTo("/auth/login")}>
-        <ListItemButton>
-          <ListItemIcon>
-            <KeyOutlined />
-          </ListItemIcon>
-          <ListItemText primary={"Ingresar"} />
-        </ListItemButton>
-      </ListItem>
       <Divider />
       <ListItem onClick={() => logout()}>
         <ListItemButton>

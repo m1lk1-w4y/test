@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
       const token = request.cookies.get('token')?.value; // Get token from cookie
       console.log(token)
 
-      if (token === undefined) {
+      if (!token) {
             // Redirect to login if no token
             return NextResponse.redirect(new URL('/auth/login', request.url));
       }
