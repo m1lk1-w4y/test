@@ -10,7 +10,7 @@ const HeroSection = () => {
   const [result, setResult] = useState(null)
 
   useEffect(() => {
-    fetch('/api/admin/hero')
+    fetch('/api/hero')
       .then((res) => res.json())
       .then((data) => {
         setResult(data)

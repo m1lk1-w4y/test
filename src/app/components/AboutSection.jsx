@@ -12,7 +12,7 @@ const AboutSection = () => {
   const [result, setResult] = useState(null)
 
   useEffect(() => {
-    fetch('/api/admin/about')
+    fetch('/api/about')
       .then((res) => res.json())
       .then((data) => {
         setResult(data)

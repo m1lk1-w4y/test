@@ -27,7 +27,7 @@ const ProjectsSection = () => {
   };
 
   useEffect(() => {
-    fetch('/api/admin/project')
+    fetch('/api/project')
       .then((res) => res.json())
       .then((data) => {
         setData(data)
