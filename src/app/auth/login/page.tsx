@@ -34,9 +34,10 @@ const Login = () => {
    window.location.replace("/admin/heros")
   } catch (error) {
    console.log("Login failed", error.message);
+   alert(error.message)
   }
 
-  alert("Ingresando...")
+  // alert("Ingresando...")
   return;
  }
 
