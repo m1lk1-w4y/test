@@ -5,7 +5,7 @@ import { jwtVerify } from 'jose';
 const SECRET_KEY = new TextEncoder().encode(process.env.TOKEN_SECRET); // Your secret key
 
 export async function middleware(request: NextRequest) {
-      const jwttoken = request.cookies.get("token").value; // Get token from cookie
+      const jwttoken = request.cookies.get("token"); // Get token from cookie
       console.log(jwttoken)
 
       if (!jwttoken) {
@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
 
       try {
             // Verify the token
-            await jwtVerify(jwttoken, SECRET_KEY);
+            await jwtVerify(jwttoken.value, SECRET_KEY);
             // return NextResponse.next(); // Continue to the requested route
             return NextResponse.redirect(new URL('/admin/heros', request.url));
       } catch (error) {
