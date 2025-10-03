@@ -12,10 +12,10 @@ export async function middleware(request) {
   return NextResponse.next();
  }
 
- if (!token) {
-  // If no token and not a public path, redirect to login
-  return NextResponse.redirect(new URL('/auth/login', request.url));
- }
+ // if (!token) {
+ //  // If no token and not a public path, redirect to login
+ //  return NextResponse.redirect(new URL('/auth/login', request.url));
+ // }
 
  try {
   // Verify the JWT
