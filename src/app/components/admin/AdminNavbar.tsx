@@ -4,6 +4,7 @@ import { AppBar, Box, Toolbar, Typography, IconButton, Drawer, List, Divider, Li
 import { CategoryOutlined, KeyOutlined } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/navigation';
+import axios from "axios";
 
 
 
@@ -19,6 +20,16 @@ const AdminNavbar = () => {
   const navigateTo = (url: string) => {
     toggleDrawer(false);
     router.push(url)
+  }
+
+  const logout = async () => {
+    try {
+      await axios.get('/api/users/logout')
+      alert('Logout successful')
+      router.push('/auth/login')
+    } catch (error: any) {
+      console.log(error.message);
+    }
   }
 
   const DrawerList = (
@@ -122,6 +133,15 @@ const AdminNavbar = () => {
             <KeyOutlined />
           </ListItemIcon>
           <ListItemText primary={"Ingresar"} />
+        </ListItemButton>
+      </ListItem>
+      <Divider />
+      <ListItem onClick={() => navigateTo("/auth/login")}>
+        <ListItemButton>
+          <ListItemIcon>
+            <KeyOutlined />
+          </ListItemIcon>
+          <ListItemText primary={"Salir"} />
         </ListItemButton>
       </ListItem>
 
