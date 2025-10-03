@@ -1,14 +1,14 @@
 "use client"
-import * as React from 'react';
+import React, { useState } from "react";
 import { AppBar, Box, Toolbar, Typography, IconButton, Drawer, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
 import { CategoryOutlined, KeyOutlined } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/navigation';
 import axios from "axios";
 
-
-
 const AdminNavbar = () => {
+  const [data, setData] = useState("")
+
 
   const [open, setOpen] = React.useState(false);
 
@@ -30,6 +30,12 @@ const AdminNavbar = () => {
     } catch (error: any) {
       console.log(error.message);
     }
+  }
+
+  const getUserDetails = async () => {
+    const res = await axios.get('/api/auth/users')
+    console.log(res.data);
+    setData(res.data.data._id)
   }
 
   const DrawerList = (
@@ -136,7 +142,7 @@ const AdminNavbar = () => {
         </ListItemButton>
       </ListItem>
       <Divider />
-      <ListItem onClick={() => navigateTo("/auth/login")}>
+      <ListItem onClick={() => logout()}>
         <ListItemButton>
           <ListItemIcon>
             <KeyOutlined />

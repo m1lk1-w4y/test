@@ -6,7 +6,7 @@ const Register = () => {
  const [user, setUser] = React.useState({
   email: "",
   password: "",
-  username: "",
+  name: "",
  })
 
  async function onSubmit(e) {
@@ -44,8 +44,8 @@ const Register = () => {
        required
        className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
        placeholder="jacob"
-       value={user.username}
-       onChange={(e) => setUser({ ...user, username: e.target.value })}
+       value={user.name}
+       onChange={(e) => setUser({ ...user, name: e.target.value })}
       />
      </div>
      <div className="mb-6">

@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Login = () => {
  const [user, setUser] = useState({ email: "", password: "", })
+
  // const [email, setEmail] = useState("")
  // const [password, setPassword] = useState("")
 
@@ -30,6 +31,7 @@ const Login = () => {
 
    const response = await axios.post("/api/auth/login", user);
    console.log("Login success", response.data);
+   window.location.replace("/admin/heros")
   } catch (error) {
    console.log("Login failed", error.message);
   }
@@ -37,6 +39,7 @@ const Login = () => {
   alert("Ingresando...")
   return;
  }
+
  return (
   <>
    <div className="grid md:grid-cols-1  mx-12 md:my-3 py-12 gap-2 relative">
