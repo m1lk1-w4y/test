@@ -5,18 +5,19 @@ import { jwtVerify } from 'jose';
 const SECRET_KEY = new TextEncoder().encode(process.env.TOKEN_SECRET); // Your secret key
 
 export async function middleware(request: NextRequest) {
-      const token = request.cookies.get('token')?.value; // Get token from cookie
-      console.log(token)
+      const jwttoken = request.cookies.get("token").value; // Get token from cookie
+      console.log(jwttoken)
 
-      if (!token) {
+      if (!jwttoken) {
             // Redirect to login if no token
             return NextResponse.redirect(new URL('/auth/login', request.url));
       }
 
       try {
             // Verify the token
-            await jwtVerify(token, SECRET_KEY);
-            return NextResponse.next(); // Continue to the requested route
+            await jwtVerify(jwttoken, SECRET_KEY);
+            // return NextResponse.next(); // Continue to the requested route
+            return NextResponse.redirect(new URL('/admin/heros', request.url));
       } catch (error) {
             // Redirect to login if token is invalid or expired
             return NextResponse.redirect(new URL('/auth/login', request.url));
